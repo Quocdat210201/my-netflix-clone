@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
-import { useRef } from "react";
-import { SmoothHorizontalScrolling } from "../../Utils";
+import { useEffect, useRef, useState } from "react";
+import { SmoothHorizontalScrolling } from "../../utils";
 
 const movies = [
   {
@@ -49,15 +49,20 @@ const movies = [
 function Content() {
   const sliderRef = useRef();
   const movieRef = useRef();
+  const [dragDown, setDragDown] = useState(0);
+  const [dragMove, setDragMove] = useState(0);
+  const [isDrag, setIsDrag] = useState(false);
 
+
+  // handle click button left - right
   const handleScrollRight = () => {
     const maxScrollLeft =
       sliderRef.current.scrollWidth - sliderRef.current.clientWidth;
     if (maxScrollLeft > sliderRef.current.scrollLeft) {
       SmoothHorizontalScrolling(
         sliderRef.current,
-        500,
-        movieRef.current.clientWidth * 1,
+        400,
+        movieRef.current.clientWidth * 2,
         sliderRef.current.scrollLeft
       );
     }
@@ -67,30 +72,61 @@ function Content() {
     if (sliderRef.current.scrollLeft > 0) {
       SmoothHorizontalScrolling(
         sliderRef.current,
-        500,
-        -movieRef.current.clientWidth * 1,
+        400,
+        -movieRef.current.clientWidth * 2,
         sliderRef.current.scrollLeft
       );
     }
   };
 
+
+  // Drag the slider
+  useEffect(() => {
+    if (isDrag) {
+      if (dragMove < dragDown) handleScrollRight();
+      if (dragMove > dragDown) handleScrollLeft();
+    }
+  }, [dragDown, dragMove, isDrag]);
+
+  const onDragStart = (e) => {
+    setIsDrag(true);
+    setDragDown(e.screenX);
+  };
+
+  const onDragEnd = (e) => {
+    setIsDrag(false);
+  };
+
+  const onDragEnter = (e) => {
+    setDragMove(e.screenX);
+  };
+
   return (
-    <MovieContainer className="bg-[var(--primary-color)] text-[var(--white-color)] pt-5 px-6 pb-0 w-full h-full">
+    <MovieContainer
+      draggable="false"
+      className="bg-[var(--primary-color)] text-[var(--white-color)] pt-5 px-[22px] pb-0 w-full h-full rounded-t-[10px]"
+    >
       <h1 className="h1">Netflix Originals</h1>
       <MovieSlider
         ref={sliderRef}
+        draggable="true"
+        onDragStart={onDragStart}
+        onDragEnd={onDragEnd}
+        onDragEnter={onDragEnter}
         className="slider grid gap-2 select-none px-3.5 py-7 scroll-smooth"
       >
         {movies.map((movie, index) => (
           <div
-            ref={movieRef}
-            key={index}
-            className="relative w-full h-full movie-item scale-100 transition select-none overflow-hidden rounded-md"
+          ref={movieRef}
+          key={index}
+          className="relative w-full h-full movie-item scale-100 transition select-none overflow-hidden rounded-md"
+          draggable="false"
           >
             <img
               src={movie.url}
               alt="thumbnails"
               className="w-full h-full object-cover"
+              draggable="false"
             />
             <div className="absolute left-0 right-0 bottom-0 py-1 text-center text-[14px] bg-[rgba(0,0,0,0.5)] ">
               {movie.name}

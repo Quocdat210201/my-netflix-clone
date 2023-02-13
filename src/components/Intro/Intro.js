@@ -14,15 +14,14 @@ function Intro(props) {
         height="100%"
         volume={volume}
         mutex={false}
-        url="https://vimeo.com/75483147"
+        url="https://vimeo.com/343334321"
         className="absolute top-0 left-0"
       />
-      <div className="absolute top-56 left-8 text-[var(--white-color)]">
-        <h1 className="text-5xl font-semibold">Netflix Choices</h1>
+      <div className="absolute top-72 left-[60px] text-[var(--white-color)]">
+        <h1 className="text-5xl font-semibold">Marvel’s Avengers</h1>
         <p className="max-w-md w-full leading-6 text-[18px] pt-4">
-          Choosing a Netflix movie isn't always easy. Produced by Simply
-          Unemployable and No End Media LLC Directed by Matt Catanzano and
-          Richie Moriarty Camera Sony F3 and Nikon Lenses.
+          Kang the Conqueror finally comes toe-to-toe with Earth's Mightiest
+          Heroes in Avengers.
         </p>
       </div>
       {mute ? (
@@ -31,14 +30,14 @@ function Intro(props) {
           onClick={() => {
             setMute((prev) => !prev);
             setVolume(1);
-        }}
+          }}
         />
-        ) : (
-            <SlVolume2
-            className="btn-volume"
-            onClick={() => {
-                setMute((prev) => !prev);
-                setVolume(0);
+      ) : (
+        <SlVolume2
+          className="btn-volume"
+          onClick={() => {
+            setMute((prev) => !prev);
+            setVolume(0);
           }}
         />
       )}

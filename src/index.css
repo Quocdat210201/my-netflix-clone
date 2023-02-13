@@ -1,6 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700&family=Rubik:wght@300;400;500;600;700;800&display=swap');
 
 * {
   margin: 0;
@@ -14,17 +15,19 @@ a {
 }
 
 :root {
-  --primary-color: rgb(17, 17, 17);
+  --primary-color: rgb(20, 20, 20);
+  --btn-color: rgb(229, 9, 20);
   --white-color: rgb(220, 218, 218);
-  --text-color: rgb(187 187 187);
+  --text-color: rgb(160 160 160);
 }
 
 
 body {
   margin: 0;
-  font-family: "Ubuntu", sans-serif;
+  /* font-family: "Ubuntu", sans-serif; */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  font-family: Roboto, Ubuntu, sans-serif;
 }
 
 code {
@@ -36,6 +39,7 @@ code {
   font-size: 20px;
   font-weight: 600;
   user-select: none;
+  margin-left: 16px;
 }
 
 .transition {
@@ -45,19 +49,29 @@ code {
 .navbar {
   transition-timing-function: ease-in;
   transition: all 1s;
+  background-image: linear-gradient(180deg, rgba(0, 0, 0, .7) 10%, transparent);
+  padding: 0 60px;
+  height: 70px;
+}
+
+.search-icon {
+  transform: translateX(-30px);
 }
 
 .input-search {
   transition: width 0.5s;
+  z-index: 2;
+  padding: 10px 20px 10px 14px;
 }
 
 .input-search:focus {
-  padding-left: 40px;
+  padding-right: 40px;
   width: 280px;
   opacity: 1;
   cursor: text;
   border-radius: 4px;
   background: transparent;
+  z-index: 0;
 }
 
 .intro-pt {
@@ -87,8 +101,47 @@ code {
 
 .fadeBottom {
   position: absolute;
-  bottom: 0;
+  top: 91%;
   width: 100%;
   height: 100px;
-  background: linear-gradient(360deg, rgba(0, 0, 0, 1) 40%, transparent 100%);
+  background-image: linear-gradient(360deg, var(--primary-color) 40%, transparent);
+}
+
+.menu-items:nth-child(1) {
+  color: #fff;
+  cursor: default;
+  font-weight: 500;
+}
+
+.notice::before {
+  content: "9";
+  position: absolute;
+  top: 0;
+  left: 10px;
+  width: 20px;
+  height: 20px;
+  background: var(--btn-color);
+  border-radius: 100rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--white-color);
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding-top: 1px;
+}
+
+.caret {
+  border-color: #fff transparent transparent;
+  border-style: solid;
+  border-width: 5px 5px 0;
+  height: 0;
+  margin-left: 8px;
+  transition: transform 367ms cubic-bezier(.21, 0, .07, 1);
+  width: 0;
+}
+
+.user:hover .caret {
+  transform: rotate(180deg);
+  cursor: pointer;
 }

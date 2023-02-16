@@ -1,59 +1,40 @@
 import { useEffect } from "react";
+import { FaAngleUp } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
 import MovieRow from "./MovieRow";
-import { getNetflixOriginals } from "../store/action";
+import * as Action from "../store/action";
+import { animateScroll as scroll } from 'react-scroll'
+import {UseScrollY} from '../hooks'
 
-const movies = [
-  // {
-  //   url: "https://mcdn.coolmate.me/image/August2021/phim-an-khach-1.png",
-  //   name: "Godzilla vs Kong",
-  // },
-  // {
-  //   url: "https://genk.mediacdn.vn/139269124445442048/2020/3/1/johnwick-15830469714681182777464.jpg",
-  //   name: "John Wick 2",
-  // },
-  // {
-  //   url: "https://znews-photo.zingcdn.me/w660/Uploaded/xbhunku/2019_03_15/D1nkY7UVAAUs7KN.jpg",
-  //   name: "End Game",
-  // },
-  // {
-  //   url: "https://mcdn.coolmate.me/image/August2021/phim-an-khach-2.png",
-  //   name: "Black Widow",
-  // },
-  // {
-  //   url: "https://mcdn.coolmate.me/image/August2021/phim-an-khach-3.png",
-  //   name: "Fast and Furious 9",
-  // },
-  // {
-  //   url: "https://mcdn.coolmate.me/image/August2021/phim-an-khach-4.png",
-  //   name: "The Kingsman: Khởi nguồn",
-  // },
-  // {
-  //   url: "https://mcdn.coolmate.me/image/August2021/phim-an-khach-6.png",
-  //   name: "The Suicide Squad 2",
-  // },
-  // {
-  //   url: "https://mcdn.coolmate.me/image/August2021/phim-an-khach-7.png",
-  //   name: "Jurassic World: Dominion",
-  // },
-  // {
-  //   url: "https://mcdn.coolmate.me/image/August2021/phim-an-khach-10.png",
-  //   name: "Cruella ",
-  // },
-  // {
-  //   url: "https://mcdn.coolmate.me/image/August2021/phim-an-khach-5.png",
-  //   name: "The Devil Made Me Do It",
-  // },
-];
+const OnScrollTop = () => {
+  scroll.scrollToTop()
+}
 
 function Content() {
+
+  const [scroll] = UseScrollY()
   const dispatch = useDispatch();
-  const { NetflixOriginals } = useSelector((state) => state.infoMovie);
+  const {
+    NetflixOriginals,
+    TrendingMovies,
+    TVShows,
+    TopRateMovies,
+    ActionMovies,
+    ComedyMovies,
+    HorrorMovies,
+    RomanceMovies,
+  } = useSelector((state) => state.infoMovie);
 
   useEffect(() => {
-    dispatch(getNetflixOriginals());
+    dispatch(Action.getNetflixOriginals());
+    dispatch(Action.getTrendingMovies());
+    dispatch(Action.getTVShow());
+    dispatch(Action.getTopRateMovies());
+    dispatch(Action.getActionMovies());
+    dispatch(Action.getComedyMovies());
+    dispatch(Action.getHorrorMovies());
+    dispatch(Action.getRomanceMovies());
   }, [dispatch]);
-
   // console.log(NetflixOriginals);
 
   return (
@@ -64,25 +45,29 @@ function Content() {
         isNetflix={true}
       />
       <MovieRow
-        movies={NetflixOriginals}
-        title="Trending movies"
+        movies={TrendingMovies}
+        title="Trending Now"
         isNetflix={false}
       />
+      <MovieRow movies={TVShows} title="TV Show" isNetflix={false} />
+      <MovieRow movies={TopRateMovies} title="Top Rate" isNetflix={false} />
+      <MovieRow movies={ActionMovies} title="Action movies" isNetflix={false} />
+      <MovieRow movies={ComedyMovies} title="Comedy movies" isNetflix={false} />
+      <MovieRow movies={HorrorMovies} title="Horror movies" isNetflix={false} />
       <MovieRow
-        movies={NetflixOriginals}
-        title="Trending TV Show"
+        movies={RomanceMovies}
+        title="Romance movies"
         isNetflix={false}
       />
-      <MovieRow
-        movies={NetflixOriginals}
-        title="Action movies"
-        isNetflix={false}
-      />
-      <MovieRow
-        movies={NetflixOriginals}
-        title="Adventure movies"
-        isNetflix={false}
-      />
+      <div
+        className="fixed bg-[var(--btn-color)] text-[46px] text-[var(--white-color)] w-16 h-16 rounded-full bottom-16 right-16 z-50 flex items-center justify-center transition cursor-pointer"
+        onClick={OnScrollTop}
+        style={{
+          visibility: `${scroll > 400 ? 'visible' : 'hidden'}`
+        }}
+      >
+        <FaAngleUp />
+      </div>
     </div>
   );
 }

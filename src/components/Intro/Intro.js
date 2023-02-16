@@ -30,13 +30,13 @@ function Intro(props) {
         <div className="flex mt-8">
           <button className="flex bg-[var(--btn-color-white)] text-[#000] btn hover:opacity-80">
             <FaPlay className="w-7 h-7 mr-4" />
-            Phát
+            Play
           </button>
           <button className="flex bg-[var(--btn-color-rgb)] text-[var(--white-color)] btn hover:opacity-80">
             <span className="block mr-4">
               <HasIcon className="" />
             </span>
-            Thông tin khác
+            More info
           </button>
         </div>
       </div>

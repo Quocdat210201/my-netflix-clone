@@ -152,10 +152,40 @@ function MovieRow(props) {
             }
           })}
       </MovieSlider>
-      <div className="btnSlider left-10" onClick={handleScrollLeft}>
+      <div
+        className="btnSlider  left-10"
+        style={
+          isNetflix
+            ? {
+                top: "43%",
+                width: "40px",
+                height: "80px",
+              }
+            : {
+                width: "30px",
+                height: "50px",
+              }
+        }
+        onClick={handleScrollLeft}
+      >
         <FiChevronLeft className="w-full h-full scale-95 hover:scale-105 transition" />
       </div>
-      <div className="btnSlider right-10" onClick={handleScrollRight}>
+      <div
+        className="btnSlider right-10"
+        style={
+          isNetflix
+            ? {
+                top: "43%",
+                width: "40px",
+                height: "80px",
+              }
+            : {
+                width: "30px",
+                height: "50px",
+              }
+        }
+        onClick={handleScrollRight}
+      >
         <FiChevronRight className="w-full h-full scale-95 hover:scale-105 transition" />
       </div>
     </MovieContainer>
@@ -173,7 +203,6 @@ const MovieContainer = styled.div`
     z-index: 7;
     transform-origin: center;
     cursor: pointer;
-    // background-color: red;
     background-color: rgba(0, 0, 0, 0.4);
     border-radius: 6px;
     height: 50px;

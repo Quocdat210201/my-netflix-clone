@@ -8,6 +8,7 @@ import { HasIcon } from "../Icons";
 function Intro(props) {
   const [mute, setMute] = useState(false);
   const [volume, setVolume] = useState(1);
+
   return (
     <div className="bg-[var(--primary-color)] text-[var(--white-color)] relative intro-pt">
       <ReactPlayer
@@ -16,7 +17,7 @@ function Intro(props) {
         width="100%"
         height="100%"
         volume={volume}
-        mutex={false}
+        // mutex={false}
         url="https://vimeo.com/343334321"
         className="absolute top-0 left-0"
       />
@@ -40,9 +41,7 @@ function Intro(props) {
         </div>
       </div>
 
-      <div
-        className="absolute right-0 top-[70%] flex items-center"
-      >
+      <div className="absolute right-0 top-[70%] flex items-center">
         {mute ? (
           <SlVolumeOff
             className="btn-volume"
@@ -60,7 +59,9 @@ function Intro(props) {
             }}
           />
         )}
-        <div className="bg-[rgba(51,51,51,.6)] flex items-center py-[7px] pr-[54px] pl-3 ml-4 text-[17px] border">18+</div>
+        <div className="bg-[rgba(51,51,51,.6)] flex items-center py-[7px] pr-[54px] pl-3 ml-4 text-[17px] border">
+          18+
+        </div>
       </div>
       <div className="fadeBottom"></div>
     </div>

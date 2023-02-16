@@ -47,7 +47,7 @@ import { SmoothHorizontalScrolling } from "../../utils";
 // ];
 
 function MovieRow(props) {
-  const { movies, title } = props;
+  const { movies, title, isNetflix } = props;
   const sliderRef = useRef();
   const movieRef = useRef();
   // const [dragDown, setDragDown] = useState(0);
@@ -103,7 +103,7 @@ function MovieRow(props) {
   return (
     <MovieContainer
       // draggable="false"
-      className="bg-[var(--primary-color)] text-[var(--white-color)] px-[22px] pb-0 w-full h-full"
+      className="bg-[var(--primary-color)] text-[var(--white-color)] px-[22px] pb-0 w-full h-full pt-4"
     >
       <h1 className="h1">{title}</h1>
       <MovieSlider
@@ -112,31 +112,45 @@ function MovieRow(props) {
         // onDragStart={onDragStart}
         // onDragEnd={onDragEnd}
         // onDragEnter={onDragEnter}
-        className="slider grid gap-2 select-none px-3.5 pb-10 pt-3 scroll-smooth"
+        className="grid gap-2 select-none px-3.5 pb-10 pt-3 scroll-smooth"
         style={
-          movies && movies.length > 0 ? {
-            gridTemplateColumns: `repeat(${movies.length}, 230px)`
-          } : {}
+          movies && movies.length > 0
+            ? {
+                gridTemplateColumns: `repeat(${movies.length}, ${
+                  isNetflix ? "250px" : "230px"
+                })`,
+              }
+            : {}
         }
       >
-        {movies.map((movie, index) => (
-          <div
-            ref={movieRef}
-            key={index}
-            className="relative w-full h-full movie-item scale-100 transition select-none overflow-hidden rounded-md"
-            // draggable="false"
-          >
-            <img
-              src={movie.url}
-              alt="thumbnails"
-              className="w-full h-full object-cover"
-              draggable="false"
-            />
-            <div className="absolute left-0 right-0 bottom-0 text-center text-[12px] bg-[rgba(0,0,0,0.5)] text-[var(--white-color)]">
-              {movie.name}
-            </div>
-          </div>
-        ))}
+        {movies &&
+          movies.length > 0 &&
+          movies.map((movie, index) => {
+            if (movie.backdrop_path && movie.poster_bath !== null) {
+              let imageUrl = isNetflix
+                ? `https://image.tmdb.org/t/p/original/${movie.poster_path}`
+                : `https://image.tmdb.org/t/p/w500/${movie.backdrop_path}`;
+              return (
+                <div
+                  ref={movieRef}
+                  key={index}
+                  className="relative w-full h-full movie-item scale-100 transition select-none overflow-hidden rounded-md"
+                >
+                  <img
+                    src={imageUrl}
+                    alt="thumbnails"
+                    className="w-full h-full object-cover"
+                    draggable="false"
+                  />
+                  {isNetflix ? null : (
+                    <div className="absolute left-0 right-0 bottom-0 text-center text-[12px] bg-[rgba(0,0,0,0.5)] text-[var(--white-color)] vertical">
+                      {movie.name || movie.title}
+                    </div>
+                  )}
+                </div>
+              );
+            }
+          })}
       </MovieSlider>
       <div className="btnSlider left-10" onClick={handleScrollLeft}>
         <FiChevronLeft className="w-full h-full scale-95 hover:scale-105 transition" />
@@ -161,9 +175,9 @@ const MovieContainer = styled.div`
     cursor: pointer;
     // background-color: red;
     background-color: rgba(0, 0, 0, 0.4);
+    border-radius: 6px;
     height: 50px;
     width: 30px;
-    border-radius: 6px;
     transition: all 0.2s linear;
 
     &:hover {
@@ -184,8 +198,8 @@ const MovieSlider = styled.div`
     }
   }
   .movie-item {
-    max-width: 230px;
-    max-height: 130px;
+    max-width: 250px;
+    max-height: 380px;
     transform: center left;
 
     &:hover {
@@ -194,5 +208,11 @@ const MovieSlider = styled.div`
       z-index: 6;
       cursor: pointer; 
     }
+  }
+  .vertical{
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
   }
 `;

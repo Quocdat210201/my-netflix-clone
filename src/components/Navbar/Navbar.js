@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import NetflixLogo from "../../assets/img/netflix-logo.png";
 
 // import { useEffect, useState } from "react";
@@ -24,11 +25,13 @@ function Navbar(props) {
       <div className="flex items-center justify-between h-full">
         <div className="flex items-center justify-start h-full">
           <div className="w-32  cursor-pointer">
-            <img
-              src={NetflixLogo}
-              alt="Netflix"
-              className="w-24 h-8 object-contain mr-6"
-            />
+            <a href="#">
+              <img
+                src={NetflixLogo}
+                alt="Netflix"
+                className="w-24 h-8 object-contain mr-6"
+              />
+            </a>
           </div>
           <Menu />
         </div>

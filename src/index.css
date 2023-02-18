@@ -37,6 +37,28 @@ code {
     monospace;
 }
 
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(1);
+  }
+}
+
+@keyframes opacity {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
 .h1 {
   font-size: 20px;
   font-weight: 600;
@@ -44,8 +66,40 @@ code {
   margin-left: 16px;
 }
 
+.bg-linear {
+  background-image: linear-gradient(360deg, #181818 20%, transparent)
+}
+
 .transition {
   transition: all .3s linear;
+}
+
+.transition-scale {
+  animation: fadeIn .3s ease-in;
+}
+
+.transition-opacity {
+  animation: opacity 0.3s ease-in;
+}
+
+.maturity {
+  padding: 0 3px;
+  outline: none;
+  border: 1px solid #fff
+}
+
+.vertical {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+}
+
+.vertical-4 {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 4;
 }
 
 .border {

@@ -92,3 +92,9 @@ export const getRomanceMovies = () => async dispath => {
         console.log('Get romance API error');
     }
 }
+
+export const setMovieDetail = (movie) => async dispath => {
+        dispath({type : Types.SET_MOVIE_DETAIL, payload: movie})
+}
+
+

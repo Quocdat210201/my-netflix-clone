@@ -99,7 +99,7 @@ code {
   overflow: hidden;
   display: -webkit-box;
   -webkit-box-orient: vertical;
-  -webkit-line-clamp: 4;
+  -webkit-line-clamp: 3;
 }
 
 .border {
@@ -218,4 +218,10 @@ code {
 .user:hover .caret {
   transform: rotate(180deg);
   cursor: pointer;
+}
+
+.social-media:hover {
+  color: var(--white-color);
+  transform: scale(1.05);
+  transition: all 0.1s linear;
 }

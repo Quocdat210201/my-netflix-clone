@@ -1,4 +1,4 @@
-/* eslint-disable jsx-a11y/anchor-has-content */
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import Tippy from '@tippyjs/react';
 import 'tippy.js/dist/tippy.css';
 import { FaFacebookF, FaTwitter, FaYoutube, FaInstagram } from 'react-icons/fa'

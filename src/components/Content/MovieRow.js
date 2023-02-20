@@ -111,7 +111,7 @@ function MovieRow(props) {
                     />
                     {isNetflix ? null : (
                       <div className="absolute left-0 right-0 bottom-0 text-center text-[12px] bg-[rgba(0,0,0,0.5)] text-[var(--white-color)] vertical">
-                        {movie.name || movie.title}
+                        <span className="block max-w-[200px] mx-auto">{movie.name || movie.title}</span>
                       </div>
                     )}
                   </div>
@@ -193,17 +193,13 @@ const MovieSlider = styled.div`
     &:hover .movie-item{
         opacity: 0.5;
     }
-  }
-  .movie-item {
-    max-width: 250px;
-    max-height: 380px;
-    transform: center left;
 
-    &:hover {
-      opacity: 1;
-      transform: scale(1.07);
-      z-index: 6;
-      cursor: pointer; 
+    
+    .movie-item {
+      max-width: 250px;
+      max-height: 380px;
+      transform: center left;
     }
+
   }
 `;

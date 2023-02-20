@@ -82,6 +82,7 @@ code {
   animation: opacity 0.3s ease-in;
 }
 
+
 .maturity {
   padding: 0 3px;
   outline: none;
@@ -224,4 +225,11 @@ code {
   color: var(--white-color);
   transform: scale(1.05);
   transition: all 0.1s linear;
+}
+
+.movie-item:hover {
+  opacity: 1;
+  transform: scale(1.1);
+  z-index: 6;
+  cursor: pointer;
 }

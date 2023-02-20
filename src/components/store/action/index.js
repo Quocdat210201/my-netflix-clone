@@ -9,7 +9,7 @@ export const getNetflixOriginals = () => async dispath => {
         const result = await axios.get(
             `${BASE_URL}/discover/tv?api_key=${API_KEY}&with_networks=213`
         );
-        dispath({type : Types.GET_NETFLIX_ORIGINALS, payload : result.data.results})
+        dispath({ type: Types.GET_NETFLIX_ORIGINALS, payload: result.data.results })
     } catch (error) {
         console.log('Get netflix API error');
     }
@@ -20,7 +20,7 @@ export const getTrendingMovies = () => async dispath => {
         const result = await axios.get(
             `${BASE_URL}/trending/all/day?api_key=${API_KEY}&language=en-us`
         );
-        dispath({type : Types.GET_TRENDING_MOVIES, payload : result.data.results})
+        dispath({ type: Types.GET_TRENDING_MOVIES, payload: result.data.results })
     } catch (error) {
         console.log('Get treding API error');
     }
@@ -31,7 +31,7 @@ export const getTVShow = () => async dispath => {
         const result = await axios.get(
             `${BASE_URL}/tv/popular?api_key=${API_KEY}&language=en-us`
         );
-        dispath({type : Types.GET_TV_SHOW, payload : result.data.results})
+        dispath({ type: Types.GET_TV_SHOW, payload: result.data.results })
     } catch (error) {
         console.log('Get TV shows API error');
     }
@@ -42,7 +42,7 @@ export const getTopRateMovies = () => async dispath => {
         const result = await axios.get(
             `${BASE_URL}/movie/top_rated?api_key=${API_KEY}&language=en-us`
         );
-        dispath({type : Types.GET_TOPRATE_MOVIES, payload : result.data.results})
+        dispath({ type: Types.GET_TOPRATE_MOVIES, payload: result.data.results })
     } catch (error) {
         console.log('Get toprate API error');
     }
@@ -53,7 +53,7 @@ export const getActionMovies = () => async dispath => {
         const result = await axios.get(
             `${BASE_URL}/discover/movie?api_key=${API_KEY}&with_genres=28`
         );
-        dispath({type : Types.GET_ACTIONS_MOVIES, payload : result.data.results})
+        dispath({ type: Types.GET_ACTIONS_MOVIES, payload: result.data.results })
     } catch (error) {
         console.log('Get action API error');
     }
@@ -64,7 +64,7 @@ export const getComedyMovies = () => async dispath => {
         const result = await axios.get(
             `${BASE_URL}/discover/movie?api_key=${API_KEY}&with_genres=35`
         );
-        dispath({type : Types.GET_COMEDY_MOVIES, payload : result.data.results})
+        dispath({ type: Types.GET_COMEDY_MOVIES, payload: result.data.results })
     } catch (error) {
         console.log('Get comedy API error');
     }
@@ -75,7 +75,7 @@ export const getHorrorMovies = () => async dispath => {
         const result = await axios.get(
             `${BASE_URL}/discover/movie?api_key=${API_KEY}&with_genres=27`
         );
-        dispath({type : Types.GET_HORROR_MOVIES, payload : result.data.results})
+        dispath({ type: Types.GET_HORROR_MOVIES, payload: result.data.results })
     } catch (error) {
         console.log('Get horror API error');
     }
@@ -87,14 +87,23 @@ export const getRomanceMovies = () => async dispath => {
         const result = await axios.get(
             `${BASE_URL}/discover/movie?api_key=${API_KEY}&with_genres=10749`
         );
-        dispath({type : Types.GET_ROMANCE_MOVIES, payload : result.data.results})
+        dispath({ type: Types.GET_ROMANCE_MOVIES, payload: result.data.results })
     } catch (error) {
         console.log('Get romance API error');
     }
 }
 
 export const setMovieDetail = (movie) => async dispath => {
-        dispath({type : Types.SET_MOVIE_DETAIL, payload: movie})
+    dispath({ type: Types.SET_MOVIE_DETAIL, payload: movie })
 }
 
-
+export const getSearchMovies = (keywords) => async dispath => {
+    try {
+        const result = await axios.get(
+            `${BASE_URL}/search/multi?api_key=${API_KEY}&language=en-US&include_adult=false&query=${keywords}`
+        );
+        dispath({ type: Types.GET_SEARCH_MOVIE, payload: result.data.results })
+    } catch (error) {
+        console.log('Get Search movie error');
+    }
+}

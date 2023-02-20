@@ -1,20 +1,20 @@
-import Content from "./components/Content/Content";
-import Intro from "./components/Intro/Intro";
 import Navbar from "./components/Navbar/Navbar";
-import MoviesDetail from "./components/MovieDetail/movieDetail";
 import Footer from "./components/Footer/footer"
-import { useSelector } from "react-redux";
+import Home from "./components/Pages/Home";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Search from "./components/Pages/Search";
 
 function App() {
-  const  {MovieDetail}  = useSelector(state => state.infoMovie)
-
   return (
     <div className="app">
-      <Navbar />
-      <Intro />
-      <Content />
-      <Footer />
-      <MoviesDetail movie={MovieDetail} showModal={MovieDetail ? true : false} />
+      <BrowserRouter>
+        <Navbar />
+        <Routes>
+          <Route exact path="/" element={<Home />} />
+          <Route path="/search" element={<Search />} />
+        </Routes>
+        <Footer />
+      </BrowserRouter>
     </div>
   );
 }

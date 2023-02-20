@@ -11,18 +11,21 @@ import Moment from 'react-moment';
 
 function MoviesDetail(props) {
     const [visible, setVisible] = useState(true)
-    const dispatch = useDispatch();
     const { movie, showModal } = props
 
-    const handleCloseMovie = () => {
+    const dispatch = useDispatch();
+    const handleCloseMovie = (e) => {
         dispatch(setMovieDetail(null))
     }
 
     // const showModal = false
 
     return (
-        <div className={`fixed top-0 left-0 right-0 bottom-0 z-50 bg-[rgba(0,0,0,0.65)] items-center justify-center transition-opacity ${showModal ? 'flex' : 'hidden'}`}>
-            <div className="bg-[#181818] w-900px] h-[680px] rounded-md relative transition-scale">
+        <div
+            className={`fixed top-0 left-0 right-0 bottom-0 z-50 bg-[rgba(0,0,0,0.65)] items-center justify-center transition-opacity ${showModal ? 'flex' : 'hidden'}`}
+            // onClick={() => handleCloseMovie()}
+        >
+            <div className={`bg-[#181818] w-900px] h-[680px] rounded-md relative transition-scale ${showModal ? 'block' : 'hidden'}`}>
                 <div className="absolute right-3 top-3 w-9 h-9 flex items-center justify-center z-20 bg-[#181818] cursor-pointer rounded-full text-[2.4rem] text-[var(--white-color)]"
                     onClick={() => handleCloseMovie()}>
                     <IoIosClose />

@@ -1,6 +1,6 @@
 import React from 'react'
-import SearchMovies from '../../SearchMovie/SearchMovie';
-import MoviesDetail from "../../MovieDetail/movieDetail"
+import SearchMovies from '../../components/SearchMovie/SearchMovie';
+import MoviesDetail from "../../components/MovieDetail/movieDetail"
 import { useSelector } from 'react-redux';
 
 function Search(props) {

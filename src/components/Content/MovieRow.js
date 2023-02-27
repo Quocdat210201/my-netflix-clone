@@ -199,6 +199,13 @@ const MovieSlider = styled.div`
       max-width: 250px;
       max-height: 380px;
       transform: center left;
+
+      &:hover{
+        opacity: 1;
+        transform: scale(1.07);
+        z-index: 6;
+        cursor: pointer;
+      }
     }
 
   }

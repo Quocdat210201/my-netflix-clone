@@ -1,7 +1,7 @@
 import { useSelector } from "react-redux";
-import Intro from "../../Intro/Intro";
-import Content from "../../Content/Content";
-import MoviesDetail from "../../MovieDetail/movieDetail"
+import Intro from "../../components/Intro/Intro";
+import Content from "../../components/Content/Content";
+import MoviesDetail from "../../components/MovieDetail/movieDetail"
 import { useEffect, useState } from "react";
 
 function Home(props) {

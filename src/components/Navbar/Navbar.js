@@ -7,7 +7,8 @@ import Search from "./Search";
 import Menu from "./Menu";
 import Action from "./Action";
 import { useState } from "react";
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, Link } from 'react-router-dom'
+import routerConfig from '../../config'
 
 function Navbar(props) {
   const [scrollY] = UseScrollY();
@@ -20,11 +21,6 @@ function Navbar(props) {
     (keywords.length > 0) ?
       (navigate(`/search?keywords=${keywords.trim()}`))
       : (navigate(`/`))
-  }
-
-  const goHome = () => {
-    navigate('/');
-    setKeywords('')
   }
 
   return (
@@ -42,13 +38,13 @@ function Navbar(props) {
       <div className="flex items-center justify-between h-full">
         <div className="flex items-center justify-start h-full">
           <div className="w-32  cursor-pointer">
-            <a href="" onClick={goHome}>
+            <Link to={routerConfig.home}>
               <img
                 src={NetflixLogo}
                 alt="Netflix"
                 className="w-24 h-8 object-contain mr-6"
               />
-            </a>
+            </Link>
           </div>
           <Menu />
         </div>
@@ -64,7 +60,9 @@ function Navbar(props) {
             className="text-sm border-2 border-solid boder-white outline-none w-0 p-2.5 cursor-pointer opacity-0 input-search"
           />
         </div> */}
+
       </div>
+
     </div>
   );
 }

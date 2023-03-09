@@ -11,6 +11,7 @@ const OnScrollTop = () => {
 }
 
 function Content() {
+  const age =8;
 
   const [scroll] = UseScrollY()
   const dispatch = useDispatch();
